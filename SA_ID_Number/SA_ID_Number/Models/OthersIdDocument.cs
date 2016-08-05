@@ -12,5 +12,11 @@ namespace SA_ID_Number.Models
             // Not developed yet.
             throw new NotImplementedException();
         }
+        
+        public override bool ValidateIdNumber(string idNumber)
+        {
+            // Not developed yet.
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace SA_ID_Number.Models
         public string country { get; set; }
 
         public abstract string GenerateIdNumber(string birthDate, string gender, string country);
+        public abstract bool ValidateIdNumber(string idNumber); 
     }
 }

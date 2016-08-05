@@ -6,6 +6,9 @@ using System.Web;
 
 namespace SA_ID_Number.Models
 {
+    /// <summary>
+    /// Person Information
+    /// </summary>
     public class Person
     {
         [Key]
