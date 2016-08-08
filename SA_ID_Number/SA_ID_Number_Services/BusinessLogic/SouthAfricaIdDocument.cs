@@ -113,8 +113,7 @@ namespace SA_ID_Number_Services.BusinessLogic
 
         private static bool ValidateDate(String date)
         {
-            int year = int.Parse(date.Substring(0, 2));
-            int month = int.Parse(date.Substring(2, 4));
+            int month = int.Parse(date.Substring(2, 2));
 
             if (month < 1 || month > 12)
             {

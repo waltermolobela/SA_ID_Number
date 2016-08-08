@@ -41,16 +41,17 @@
         }
 
         function ValidateIdNumber() {
+            var id = $("#validIdNumber").val().replace(/\s/g, "");
             $.ajax({
-                url: "http://localhost:55440/api/IdDocument",
-                type: 'POST',
-                data: {
-                    "firstName": $("#firstName").val(), "lastName": $("#lastName").val(),
-                    "gender": $("#gender").val(), "race": $("#race").val(), "dateOfBirth": $("#dateOfBirth").val()
-                },
+                url: "http://localhost:55440/api/IdDocument/" + id,
+                type: 'GET',  
                 dataType: 'Json',
                 success: function (results) {
                     console.log(results);
+                    if (results.isValidId)
+                        $("#validateIdNumber").html("The ID Number: " + $("#validIdNumber").val() + " is valid");
+                    else
+                        $("#validateIdNumber").html("The ID Number: " + $("#validIdNumber").val() + " is not valid");
                 }
             });
         }

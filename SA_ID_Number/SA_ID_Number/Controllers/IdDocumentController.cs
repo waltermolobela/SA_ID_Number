@@ -11,16 +11,16 @@ using SA_ID_Number_Services.BusinessLogic;
 namespace SA_ID_Number.Controllers
 {
     public class IdDocumentController : ApiController
-    {
-        // GET: api/IdDocument
-        public void Get()
-        {    
-        }
-
+    {  
         // GET: api/IdDocument/5
-        public string Get(int id)
-        {
-            return "value";
+        public HttpResponseMessage Get(string id)
+        { 
+            SouthAfricaIdDocument southAfricaIdNumberServices = new SouthAfricaIdDocument();
+            bool isValidId = southAfricaIdNumberServices.ValidateIdNumber(id);
+            var result = new Dictionary<String, bool>();
+            result.Add("isValidId", isValidId);
+
+            return Request.CreateResponse(HttpStatusCode.Created, result); 
         }
 
         // POST: api/IdDocument
@@ -31,16 +31,6 @@ namespace SA_ID_Number.Controllers
             person.IdNumber = southAfricaIdNumberServices.GenerateIdNumber(person.DateOfBirth, person.Gender);   
 
             return Request.CreateResponse(HttpStatusCode.Created, person);  
-        }
-
-        // PUT: api/IdDocument/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/IdDocument/5
-        public void Delete(int id)
-        {
-        }
+        }  
     }
 }
