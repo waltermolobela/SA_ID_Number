@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DataLayer.Data;
 
-namespace SA_ID_Number.Models
+namespace SA_ID_Number_Services.BusinessLogic
 {
-    public class OthersIdDocument : IdDocument
+    public class OthersIdDocument : IdDocumentServices
     {
-        public override string GenerateIdNumber(string birthDate, string gender, string country)
+        public override string GenerateIdNumber(string birthDate, string gender)
         {
             // Not developed yet.
             throw new NotImplementedException();

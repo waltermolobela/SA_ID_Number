@@ -111,9 +111,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SA_ID_Number\SA_ID_Number.csproj">
       <Project>{2BA98B3C-1D0F-48DC-AC2E-0A7F8F938BEB}</Project>
       <Name>SA_ID_Number</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SA_ID_Number_Services\SA_ID_Number_Services.csproj">
+      <Project>{DCE2AC65-FAFC-4D1D-8738-B8B830DB3838}</Project>
+      <Name>SA_ID_Number_Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

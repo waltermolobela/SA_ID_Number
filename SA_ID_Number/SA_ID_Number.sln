@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA_ID_Number", "SA_ID_Numbe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA_ID_Number.Tests", "SA_ID_Number.Tests\SA_ID_Number.Tests.csproj", "{DD47BE1B-EFC8-421C-B7D6-D13E5879DCA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA_ID_Number_Services", "SA_ID_Number_Services\SA_ID_Number_Services.csproj", "{DCE2AC65-FAFC-4D1D-8738-B8B830DB3838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{DD47BE1B-EFC8-421C-B7D6-D13E5879DCA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD47BE1B-EFC8-421C-B7D6-D13E5879DCA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD47BE1B-EFC8-421C-B7D6-D13E5879DCA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE2AC65-FAFC-4D1D-8738-B8B830DB3838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE2AC65-FAFC-4D1D-8738-B8B830DB3838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE2AC65-FAFC-4D1D-8738-B8B830DB3838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE2AC65-FAFC-4D1D-8738-B8B830DB3838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

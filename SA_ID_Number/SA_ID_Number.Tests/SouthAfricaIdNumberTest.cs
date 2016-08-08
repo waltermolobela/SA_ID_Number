@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using SA_ID_Number.Models;
+using SA_ID_Number_Services.BusinessLogic;
 
 namespace SA_ID_Number.Tests
 {
@@ -25,20 +26,16 @@ namespace SA_ID_Number.Tests
         [Test]
         public void GenerateIdNumber()
         {
-            Person person = new Person();
-            person.firstName = "Walter";
-            person.lastName = "Molobela";
-            person.dateOfBirth = DateTime.Now.ToString("yyyy-MM-dd");
-            person.gender = "Male";
-            person.race = "African";
-
-            person.IdDocument = new SouthAfricaIdDocument();
-            person.IdDocument.country = "South Africa";
+            PersonVM person = new PersonVM();
+            person.FirstName = "Walter";
+            person.LastName = "Molobela";
+            person.DateOfBirth = DateTime.Now.ToString("yyyy-MM-dd");
+            person.Gender = "Male";    
 
             SouthAfricaIdDocument southAfricaIdNumberServices = new SouthAfricaIdDocument();
-            var id = southAfricaIdNumberServices.GenerateIdNumber(person.dateOfBirth, person.gender, person.race);
+            var id = southAfricaIdNumberServices.GenerateIdNumber(person.DateOfBirth, person.Gender);
 
-            var birthDate = DateTime.ParseExact(person.dateOfBirth, "yyyy-MM-dd", CultureInfo.CurrentCulture).ToString("yyMMdd");
+            var birthDate = DateTime.ParseExact(person.DateOfBirth, "yyyy-MM-dd", CultureInfo.CurrentCulture).ToString("yyMMdd");
 
             Assert.AreEqual(birthDate, id.Substring(0,6));
         }

@@ -139,13 +139,11 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdDocumentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\OthersIdDocument.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\IdDocument.cs" />
-    <Compile Include="Models\SouthAfricaIdDocument.cs" />
+    <Compile Include="Models\PersonVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1011,6 +1009,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{824F766B-D282-4AF8-9B9B-B0B40C4FA65F}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SA_ID_Number_Services\SA_ID_Number_Services.csproj">
+      <Project>{dce2ac65-fafc-4d1d-8738-b8b830db3838}</Project>
+      <Name>SA_ID_Number_Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

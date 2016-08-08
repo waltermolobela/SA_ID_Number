@@ -781,7 +781,7 @@ address span {
 .contact-form {
   padding-top: 11px;
 }
-.contact-form input {
+.contact-form input, select {
   color: #c4c3c4;
   height: 36px;
   width: 270px;

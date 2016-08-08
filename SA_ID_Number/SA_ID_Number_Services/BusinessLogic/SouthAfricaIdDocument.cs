@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Text.RegularExpressions;
+using DataLayer.Data;
 
-namespace SA_ID_Number.Models
+namespace SA_ID_Number_Services.BusinessLogic
 {
     /// <summary>
     ///  South African ID Document
     /// </summary>
-    public class SouthAfricaIdDocument : IdDocument
+    public class SouthAfricaIdDocument : IdDocumentServices
     {
         #region properties
+        private const int CountryId = 0;  
         #endregion 
 
         #region Public Methods
@@ -22,26 +22,26 @@ namespace SA_ID_Number.Models
         /// </summary>
         /// <param name="birthDate"></param>
         /// <param name="gender"></param>
-        /// <param name="race"></param>
         /// <returns></returns>
-        public override string GenerateIdNumber(string birthDate, string gender, string race)
-        {
-            int countryId = 0;
-            int personRace = 8;
-            var formatedBirthDate =
-                DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.CurrentCulture).ToString("yyMMdd");
-
-            Random random = new Random();
-            long randomNumber = gender.ToLower().Equals("male") ? random.Next(5000, 9999) : random.Next(1000, 5000);
-
-            if (race.ToLower().Trim().Equals("african"))
+        public override string GenerateIdNumber(string birthDate, string gender)
+        { 
+            try
             {
-                personRace = 9;
+                PersonRace = 8;
+                DateOfBirth =
+                    DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.CurrentCulture).ToString("yyMMdd");
+
+                Random random = new Random();
+                int randomNumber = gender.ToLower().Equals("male") ? random.Next(5000, 9999) : random.Next(1000, 5000);
+
+                return String.Format("{0} {1} {2}{3}{4}", DateOfBirth, randomNumber, CountryId, PersonRace, GetControlDigit());
             }
-
-            return String.Format("{0} {1}{2} {3} {4}", formatedBirthDate, randomNumber, countryId, personRace, GetControlDigit());
-        }
-
+            catch (Exception ex)
+            {
+                return ex.Message;
+            } 
+        }    
+       
         /// <summary>
         /// Checks if the entered ID is valid
         /// </summary>
@@ -49,12 +49,30 @@ namespace SA_ID_Number.Models
         /// <returns></returns>
         public override bool ValidateIdNumber(string idNumber)
         {
-            bool isValid = false;
-            return isValid;
-        }
-        #endregion
+            try
+            {
+                Regex regex = new Regex("[0-9]{13}");
+                Match match = regex.Match(idNumber);
 
+                if (!match.Success)
+                {
+                    return false;
+                }
 
+                if (!ValidateDate(idNumber.Substring(0, 6)))
+                {
+                    return false;
+                }  
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }  
+        }   
+       
+        #endregion           
 
         #region private Methods
         // This method assumes that the 13-digit id number has 
@@ -91,6 +109,19 @@ namespace SA_ID_Number.Models
             }
             catch {/*ignore*/} return d;
         }
+
+
+        private static bool ValidateDate(String date)
+        {
+            int year = int.Parse(date.Substring(0, 2));
+            int month = int.Parse(date.Substring(2, 4));
+
+            if (month < 1 || month > 12)
+            {
+                return false;
+            }
+            return true;
+        }  
         #endregion
     }
 }
