@@ -56,15 +56,8 @@ namespace SA_ID_Number_Services.BusinessLogic
                 Regex regex = new Regex("[0-9]{13}");
                 Match match = regex.Match(idNumber);
 
-                if (!match.Success)
-                {
+                if (!match.Success || !ValidateDate(idNumber.Substring(0, 6)) || idNumber.Length != 13) 
                     return false;
-                }
-
-                if (!ValidateDate(idNumber.Substring(0, 6)))
-                {
-                    return false;
-                }  
 
                 return true;
             }
