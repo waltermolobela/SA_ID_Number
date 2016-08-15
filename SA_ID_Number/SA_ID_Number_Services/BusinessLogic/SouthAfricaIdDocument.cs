@@ -13,7 +13,8 @@ namespace SA_ID_Number_Services.BusinessLogic
     public class SouthAfricaIdDocument : IdDocumentServices
     {
         #region properties
-        private const int CountryId = 0;  
+        private const int CountryId = 0;
+        private string ParsedIdString; 
         #endregion 
 
         #region Public Methods
@@ -32,7 +33,8 @@ namespace SA_ID_Number_Services.BusinessLogic
                     DateTime.ParseExact(birthDate, "yyyy-MM-dd", CultureInfo.CurrentCulture).ToString("yyMMdd");
 
                 Random random = new Random();
-                int randomNumber = gender.ToLower().Equals("male") ? random.Next(5000, 9999) : random.Next(1000, 5000);
+                int randomNumber = gender.ToLower().Equals("male") ? random.Next(5000, 9999) : random.Next(1000, 5000); 
+                ParsedIdString = String.Format("{0}{1}{2}{3}", DateOfBirth, randomNumber, CountryId, PersonRace); 
 
                 return String.Format("{0} {1} {2}{3}{4}", DateOfBirth, randomNumber, CountryId, PersonRace, GetControlDigit());
             }
@@ -50,7 +52,7 @@ namespace SA_ID_Number_Services.BusinessLogic
         public override bool ValidateIdNumber(string idNumber)
         {
             try
-            {
+            { 
                 Regex regex = new Regex("[0-9]{13}");
                 Match match = regex.Match(idNumber);
 
@@ -82,18 +84,18 @@ namespace SA_ID_Number_Services.BusinessLogic
         // -1 if the method fails.
         private int GetControlDigit()
         {
-            int d = 1;
+            int d = -1;
             try
             {
                 int a = 0;
                 for (int i = 0; i < 6; i++)
                 {
-                    //a += int.Parse(this.ParsedIdString[2 * i].ToString()); ToDo
+                    a += int.Parse(this.ParsedIdString[2 * i].ToString());
                 }
                 int b = 0;
                 for (int i = 0; i < 6; i++)
                 {
-                    //b = b * 10 + int.Parse(this.ParsedIdString[2 * i + 1].ToString()); ToDO
+                    b = b * 10 + int.Parse(this.ParsedIdString[2 * i + 1].ToString());
                 }
                 b *= 2;
                 int c = 0;
@@ -107,9 +109,10 @@ namespace SA_ID_Number_Services.BusinessLogic
                 d = 10 - (c % 10);
                 if (d == 10) d = 0;
             }
-            catch {/*ignore*/} return d;
-        }
+            catch {/*ignore*/}
 
+            return d;
+        }     
 
         private static bool ValidateDate(String date)
         {
